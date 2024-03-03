@@ -5,11 +5,11 @@ function Feedback({feedback, totalFeedback, notBadFeedback}) {
   return (
     <div className={styles.wrapper}>
       <ul className={styles.feedbackList}>
-        <li><p>Good: {feedback.good}</p></li>
-        <li><p>Neutral: {feedback.neutral}</p></li>
-        <li><p>Bad: {feedback.bad}</p></li>
-        <li><p>Total: {totalFeedback}</p></li>
-        <li><p>Positive: {positive}%</p></li>
+        <li><p className={styles.text}>Good: {feedback.good}</p></li>
+        <li><p className={styles.text}>Neutral: {feedback.neutral}</p></li>
+        <li><p className={styles.text}>Bad: {feedback.bad}</p></li>
+        <li><p className={styles.text}>Total: {totalFeedback}</p></li>
+        <li><p className={styles.text}>Positive: {positive}%</p></li>
       </ul>
     </div>
   );
