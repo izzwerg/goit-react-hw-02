@@ -13,8 +13,8 @@ const baseState = {
 
 function App() {
   const [feedback, setFeedback] = useState(baseState);
-  const updateFeedback = feedbackType => {
-    setFeedback(prevFeedbackState => {
+  const updateFeedback = (feedbackType) => {
+    setFeedback((prevFeedbackState) => {
       const newFeedback = {
         ...prevFeedbackState,
         [feedbackType]: prevFeedbackState[feedbackType] + 1,
@@ -22,21 +22,31 @@ function App() {
       return newFeedback;
     });
   };
-  
+
+  const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
+
+  const resetFeedback = () => {
+    setFeedback(baseState);
+  };
+
   return (
     <>
       <Description />
       <Options
-      baseState={baseState}
-      updateFeedback={updateFeedback}
-      // isShowFeedback={isShowFeedback}
-      // resetFeedback={resetFeedback}
+        baseState={baseState}
+        updateFeedback={updateFeedback}
+        totalFeedback={totalFeedback}
+        resetFeedback={resetFeedback}
       />
-      <Feedback
-      feedback={feedback}
-      // totalFeedback={totalFeedback}
-      // positiveFeedback={positiveFeedback}
-      />
+      {totalFeedback > 0 ? (
+        <Feedback
+          feedback={feedback}
+          // totalFeedback={totalFeedback}
+          // positiveFeedback={positiveFeedback}
+        />
+      ) : (
+        <Notification />
+      )}
     </>
   );
 }
