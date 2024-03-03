@@ -24,6 +24,7 @@ function App() {
   };
 
   const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
+  const notBadFeedback = feedback.good + feedback.neutral;
 
   const resetFeedback = () => {
     setFeedback(baseState);
@@ -41,8 +42,8 @@ function App() {
       {totalFeedback > 0 ? (
         <Feedback
           feedback={feedback}
-          // totalFeedback={totalFeedback}
-          // positiveFeedback={positiveFeedback}
+          totalFeedback={totalFeedback}
+          notBadFeedback={notBadFeedback}
         />
       ) : (
         <Notification />
