@@ -12,7 +12,20 @@ const baseState = {
 };
 
 function App() {
-  const [feedback, setFeedback] = useState(baseState);
+  const [feedback, setFeedback] = useState(() => {
+    const savedFeedback = window.localStorage.getItem("saved-feedback");
+    if (JSON.parse(savedFeedback) != null) {
+      return JSON.parse(savedFeedback)
+    } else {
+      return baseState
+    }
+  });
+
+  useEffect(() => {
+    window.localStorage.setItem("saved-feedback", JSON.stringify(feedback));
+  }, [feedback]);
+
+
   const updateFeedback = (feedbackType) => {
     setFeedback((prevFeedbackState) => {
       const newFeedback = {
